@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
+</head>
+<body>
+    <h1>Productos</h1>
+    <ul>
+        {% for producto in productos %}
+            <li>
+                {{ producto.nombre }} - ${{ producto.precio }}
+                <a href="{{ url_for('agregar_producto', producto_id=producto.id) }}">Agregar al carrito</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h1>Carrito de Compras</h1>
+    <ul>
+        {% for producto in carrito %}
+            <li>
+                {{ producto.nombre }} - ${{ producto.precio }}
+                <a href="{{ url_for('eliminar_producto', producto_id=producto.id) }}">Eliminar</a>
+            </li>
+        {% endfor %}
+    </ul>
+    
+    <p>Total: ${{ total }}</p>
+
+    <a href="{{ url_for('vaciar_carrito') }}">Vaciar Carrito</a>
+    <a href="{{ url_for('admin') }}"><button>Ir al Panel de Administración</button></a>
+</body>
+</html>

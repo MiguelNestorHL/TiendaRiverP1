@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración</title>
+</head>
+<body>
+    <h1>Panel de Administración</h1>
+    
+    <!-- Formulario para agregar nuevos productos -->
+    <form action="/admin/agregar_producto" method="post">
+        <label for="nombre">Nombre del Producto:</label>
+        <input type="text" name="nombre" required>
+        
+        <label for="precio">Precio:</label>
+        <input type="number" name="precio" step="0.01" required>
+        
+        <button type="submit">Agregar Producto</button>
+    </form>
+
+    <h2>Lista de Productos</h2>
+    <ul>
+        {% for producto in productos %}
+            <li>
+                {{ producto.nombre }} - ${{ producto.precio }}
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('index') }}"><button>Ir al index</button></a>
+</body>
+</html>
